@@ -1,0 +1,89 @@
+<html>
+
+<head>
+
+    <title>res</title>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+
+</head>
+<div class="row bg-dark">
+
+    <div class="col-1 text-info m-3">
+
+        Выполнил:
+
+    </div>
+
+    <div class="col-6 text-light ml-5 mt-auto">
+
+        <h2>Симашев Р.О. РК6-42б</h2>
+
+    </div>
+
+    <div class="col text-light m-3">
+
+        <a href="http://127.0.0.1:5000"><h5><-Вернуться к запросу</h5></a>
+
+    </div>
+
+</div>
+
+<div class="row ml-5">
+
+    <div class="col-3">
+
+        <h3 class="ml-3">Введённые данные:</h3>
+
+        {% if year%}
+        Год = {{year}}
+        {% endif %}
+        <br>
+        {% if month%}
+        Месяц = {{month}}
+        {% endif %}
+
+        <br>
+        {% if name%}
+        Название = {{name}}
+        {% endif %}
+
+    </div>
+
+    <div class="col-9">
+
+        <table class="table table-bordered">
+
+            <thead class="table-secondary">
+
+                <tr>
+                    {%for schem in schema%}
+                    <th scope="col">{{schem}}</th>
+                    {% endfor %}
+                </tr>
+
+            </thead>
+
+            <tbody class="table-striped">
+
+                {%for blank in blanks%}
+
+                <tr>
+
+                    {%for schem in schema%}
+                    <td align=center>{{blank[schem]}}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</html>

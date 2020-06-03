@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Database</title>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+
+</head>
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" ></script>
+<script src="{{url_for('.static', filename='js/bootstrap.js')}}"></script>
+<script src="{{url_for('.static', filename='js/bootstrap.bundle.js')}}"></script>
+{% endblock%}
+
+<body style="overflow-x: hidden">
+
+    <div class="row bg-dark">
+
+        <div class="col-1 text-info m-3">
+
+            Выполнил:
+
+        </div>
+
+        <div class="col-6 text-light ml-5 mt-auto">
+
+            <h2>Симашев Р.О. РК6-42б</h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="ml-3">
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                Запрос 1
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <div class="ml-3">
+
+                    Создать отчет о демонстрации фильмов в апреле 2017 года по форме Название фильма, общее количество сеансов, общее количество проданных билетов
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Название фильма</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Кол-во сеансов</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Кол-во билетов</a>
+
+                    <br>
+
+                </div>
+
+                <form method='POST' action=''>
+
+                    <label for=year><p class="ml-3">Год:</label>
+
+                    <input type="text" id=year name=year class="form-control">
+
+                    <label for=month><p class="ml-3">Месяц:</label>
+
+                    <input type="text" id=month name=month class="form-control">
+
+
+                    <br>
+
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 1">
+
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-expanded="false">
+                Запрос 2
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <div class="ml-3">
+
+                    Создать отчет о выручке за демонстрацию фильма под названием XXX в апреле 2017 года по форме: дата демонстрации, общая выручка за указанный день.
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Название</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Длительность</a>
+
+                    <br>
+
+
+                </div>
+
+                <form method='POST' action=''>
+
+                    <label for=year2><p class="ml-3">Год:</label>
+
+                    <input type="text" id=year2 name=year2 class="form-control">
+
+                    <label for=month2><p class="ml-3">Месяц:</label>
+
+                    <input type="text" id=month2 name=month2 class="form-control">
+
+                    <label for=name2><p class="ml-3">Название фильма:</label>
+
+                    <input type="text" id=name2 name=name2 class="form-control">
+
+
+                    <br>
+
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 2">
+
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-expanded="false">
+                Запрос 3
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                <form class="dropdown-item" method='POST' action=''>
+                    Показать все сведенья о самом длинном фильме, демонстрировавшемся в кинотеатре.
+
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 3">
+
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-expanded="false">
+                Запрос 4
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                Показать все сведенья о фильмах, которые еще ни разу
+                не демонстрировались в кинотеатре (с помощью левостороннего соединения)
+                <form class="dropdown-item" method='POST' action=''>
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 4">
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-expanded="false">
+                Запрос 5
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+                Показать названия фильмов, которые не демонстрировались в марте 2017 года
+                <form class="dropdown-item" method='POST' action=''>
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 5">
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-expanded="false">
+                Запрос 6
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton6">
+                Показать сведенья о фильме, который демонстрировались на наибольшем количестве сеансов в апреле 2020 года (с помощью view).
+                <form class="dropdown-item" method='POST' action=''>
+                    <input class="btn btn-secondary" name='send' type='submit' value="Запрос 6">
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-expanded="false">
+                Процедура
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
+                <div class="ml-3">
+
+                    Создать отчет о демонстрации фильмов в каком-то месяце какого-то года по форме Название фильма, длительность фильма, общее количество сеансов, общее количество проданных билетов
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Дата</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Выручка</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Кол-во сеансов</a>
+
+                    <br>
+
+                    <a class="ml-5 text-danger">Кол-во билетов</a>
+
+                    <br>
+
+
+                </div>
+
+                <form method='POST' action=''>
+
+                    <label for=year7><p class="ml-3">Год:</label>
+
+                    <input type="text" id=year7 name=year7 class="form-control">
+
+                    <label for=month7><p class="ml-3">Месяц:</label>
+
+                    <input type="text" id=month7 name=month7 class="form-control">
+
+
+                    <br>
+
+                    <input class="btn btn-secondary" name='send' type='submit' value="Процедура">
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
