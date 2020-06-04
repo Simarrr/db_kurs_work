@@ -21,11 +21,11 @@ def do_search():
 
             cursor = conn.cursor()
 
-            _SQL = f"""select film.name,count(session.id_film) - count(ticket.id_ticket) + 1, sum(ticket.status)
+            _SQL = f"""select film.name,count(session.id_film), sum(ticket.status)
                        from film left join session on film.id_film = session.id_film
                        left join ticket on session.id_session = ticket.id_session
                        where year(session.date) = {year} and month(session.date) = {month}
-                       group by film.name"""
+                       group by session.id_film"""
 
             cursor.execute(_SQL)
 
@@ -73,8 +73,7 @@ def do_search():
             conn = mysql.connector.connect(user='root', password='Smileng11', host='localhost', database='cinema')
             cursor = conn.cursor()
             _SQL = f"""SELECT * FROM film
-                       order by duration desc
-                       limit 1;"""
+		having(max(film.duration));"""
             cursor.execute(_SQL)
             result = cursor.fetchall()
             res = []
@@ -100,8 +99,11 @@ def do_search():
                             conn = mysql.connector.connect(user='root', password='Smileng11', host='localhost', database='cinema')
                             cursor = conn.cursor()
                             _SQL = f"""select film.name
-                                       from film left join session on film.id_film = session.id_film
-                                       where session.id_session is NULL"""
+			from film left join session on film.id_film = session.id_film
+			left join ticket on session.id_session = ticket.id_session
+			where year(session.date) = '2017' and month(session.date) = '3'
+			group by session.id_session
+			having(count(ticket.id_ticket) = '0')"""
                             cursor.execute(_SQL)
                             result = cursor.fetchall()
                             res = []
